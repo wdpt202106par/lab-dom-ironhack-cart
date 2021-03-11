@@ -11,21 +11,36 @@ function updateSubtotal(product) {
   const quantity = Number(quantityEl.value) // je numberise l'élément Html => valeur qui sera assignée
 
   subtotalEl.innerHTML = price*quantity // je fais intéragir JS et HTML pour renvoyer le sous total en nombre
-  
+  return price*quantity;
 }
 
 function calculateAll() {
   // code in the following two lines is added just for testing purposes.
   // it runs when only iteration 1 is completed. at later point, it can be removed.
-  const singleProduct = document.querySelector('.product');
-  updateSubtotal(singleProduct);
+  //const singleProduct = document.querySelector('.product');
+  //updateSubtotal(singleProduct);
   // end of test
 
   // ITERATION 2
-  //... your code goes here
-
+  //adding new product
+  // function addNewProduct(newProduct){
+  // let p = document.getElementById('product');
+  // let newProduct = p.cloneNode(true);
+  // let newName = newProduct.querySelector('name')
+  // newName.innerHTML="Ironhack Beach Towel";
+  // let newPrice = newProduct.querySelector('price');
+  // newPrice.innerHTML =12.5;
+  // }
+  const allProduct = document.querySelectorAll('.product');
+  allProduct.forEach(function(product){
+    updateSubtotal(product);
+  });
+  console.log(allProduct);
   // ITERATION 3
-  //... your code goes here
+  const totalValue = document.querySelector('total-value');
+  let allSubtotal = document.querySelectorAll('.subtotal')
+  console.log(allProduct);
+  
 }
 
 // ITERATION 4

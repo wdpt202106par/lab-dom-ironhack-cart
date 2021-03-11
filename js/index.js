@@ -1,37 +1,49 @@
 // ITERATION 1
 
-  // ('click', () => {
-  //   btnTotal.onclick = function () {
-  //     return subtotal.innerHTML +1
-  //   }
-  // })
-  //btnTotal.innerHTML
-    //const btnTotal = document.getElementById("calculate");
-
-
 function updateSubtotal(product) {
   let priceEl = product.querySelector('.price span');
   let quantityEl = product.querySelector('.quantity input');
   let subtotalEl = product.querySelector('.subtotal span')
-  //console.log(quantityEl);
-  subtotalEl.innerHTML = Number(priceEl.innerHTML) * Number(quantityEl.value);
+  let result = Number(priceEl.innerHTML) * Number(quantityEl.value);
+  subtotalEl.innerHTML = result
   console.log('Calculating subtotal, yey!');
+  return result; 
 }
 
 
 function calculateAll() {
-  // code in the following two lines is added just for testing purposes.
-  // it runs when only iteration 1 is completed. at later point, it can be removed.
-  const singleProduct = document.querySelector('.product');
-  updateSubtotal(singleProduct);
-  // end of test
+  const singleProduct = document.querySelectorAll('.product');
+  singleProduct.forEach(el => updateSubtotal(el))
+  let singleResult = document.querySelector('.subtotal span');
+  let totalResult = document.querySelector('#total-value span');
+  totalResult.innerHTML = singleResult.innerHTML
 
-  // ITERATION 2
-  //... your code goes here
+
+
+  
+  
+  // const totalResult = numbers.reduce((acc, singleResult) => {
+  //   return acc + singleResult;
+  // },0)
+// const ages = people.reduce((sum, person) => {
+// 	return sum + person.age;
+// }, 0);
+
+
+
+
+
+
+
+
+
+
+
+  }
+
 
   // ITERATION 3
   //... your code goes here
-}
 
 // ITERATION 4
 

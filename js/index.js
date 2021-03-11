@@ -17,33 +17,7 @@ function calculateAll() {
   let singleResult = document.querySelector('.subtotal span');
   let totalResult = document.querySelector('#total-value span');
   totalResult.innerHTML = singleResult.innerHTML
-
-
-
-  
-  
-  // const totalResult = numbers.reduce((acc, singleResult) => {
-  //   return acc + singleResult;
-  // },0)
-// const ages = people.reduce((sum, person) => {
-// 	return sum + person.age;
-// }, 0);
-
-
-
-
-
-
-
-
-
-
-
-  }
-
-
-  // ITERATION 3
-  //... your code goes here
+}
 
 // ITERATION 4
 

@@ -37,10 +37,10 @@ function calculateAll() {
   });
   console.log(allProduct);
   // ITERATION 3
-  const totalValue = document.querySelector('total-value');
-  let allSubtotal = document.querySelectorAll('.subtotal')
-  console.log(allProduct);
-  
+  const totalValue = document.querySelector('#total-value span');
+  let allSubtotal = document.querySelectorAll('.subtotal span'); // [ <span>, <span> ]
+  let sum = Array.from(allSubtotal).reduce((acc,el)=>{return acc+Number(el.innerHTML);},0)
+  totalValue.innerHTML=sum;
 }
 
 // ITERATION 4

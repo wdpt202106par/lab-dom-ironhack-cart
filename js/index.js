@@ -1,11 +1,20 @@
 // ITERATION 1
 
+  // ('click', () => {
+  //   btnTotal.onclick = function () {
+  //     return subtotal.innerHTML +1
+  //   }
+  // })
+  //btnTotal.innerHTML
+    //const btnTotal = document.getElementById("calculate");
+
+
 function updateSubtotal(product) {
-  let price = product.querySelector('.price span');
-  let quantity = product.querySelector('.quantity input');
-  let subtotal = product.querySelector('.subtotal span')
-  subtotal.innerHTML = price.innerHTML;
-  subtotal.innerHTML = subtotal.innerHTML * quantity.innerHTML;
+  let priceEl = product.querySelector('.price span');
+  let quantityEl = product.querySelector('.quantity input');
+  let subtotalEl = product.querySelector('.subtotal span')
+  //console.log(quantityEl);
+  subtotalEl.innerHTML = Number(priceEl.innerHTML) * Number(quantityEl.value);
   console.log('Calculating subtotal, yey!');
 }
 

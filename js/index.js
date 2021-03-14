@@ -54,9 +54,14 @@ deleteButton.forEach(function (el) {
 function createProduct() {
   let product = document.querySelector(".product");
   let clone = product.cloneNode(true);
-  let name = document.querySelector(".create-product input").value;
+  let child = clone.childNodes;
+  let name = child[1];
+  let price = child[3];
 
-  clone.querySelector(".create-product input").innerHTML = name;
+  name.innerHTML = document.querySelector(".create-product input").value;
+  price.innerHTML = document.querySelectorAll(".create-product input")[1].value;
+
+  // clone.querySelector(".create-product input").innerHTML = name;
 
   let insert = document.querySelector("tbody").appendChild(clone);
 

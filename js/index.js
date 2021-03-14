@@ -20,12 +20,21 @@ function calculateAll() {
 
   const allProduct = document.querySelectorAll(".product"); // [ <tr>, <tr> ]
 
-  var res1 = updateSubtotal(allProduct[0]);
-  var res2 = updateSubtotal(allProduct[1]);
+  // var res1 = updateSubtotal(allProduct[0]);
+  // var res2 = updateSubtotal(allProduct[1]);
+  let prod, result;
+  for (let i = 0; i < allProduct.length; i++) {
+    prod = allProduct[i];
+    updateSubtotal(prod);
+    result = updateSubtotal(prod) + updateSubtotal(allProduct[i]);
+    // result = updateSubtotal(prod) + updateSubtotal(allProduct[i]);
+
+    // document.querySelector("#total-value span").innerHTML = result;
+  }
 
   // ITERATION 3
 
-  let result = res1 + res2;
+  // let result = res1 + res2;
   document.querySelector("#total-value span").innerHTML = result;
 }
 
@@ -56,7 +65,7 @@ function createProduct() {
   let clone = product.cloneNode(true);
   let child = clone.childNodes;
   let name = child[1];
-  let price = child[3];
+  let price = child[3].querySelector("span");
 
   name.innerHTML = document.querySelector(".create-product input").value;
   price.innerHTML = document.querySelectorAll(".create-product input")[1].value;

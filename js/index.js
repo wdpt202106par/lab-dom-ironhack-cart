@@ -11,26 +11,18 @@ function updateSubtotal(product) {
   const quantity = Number(quantityEl.value) // je numberise l'élément Html => valeur qui sera assignée
 
   subtotalEl.innerHTML = price*quantity // je fais intéragir JS et HTML pour renvoyer le sous total en nombre
-  return price*quantity;
+  return price*quantity ;
 }
 
 function calculateAll() {
   // code in the following two lines is added just for testing purposes.
   // it runs when only iteration 1 is completed. at later point, it can be removed.
-  //const singleProduct = document.querySelector('.product');
-  //updateSubtotal(singleProduct);
+  // const singleProduct = document.querySelector('.product');
+  // updateSubtotal(singleProduct);
   // end of test
 
   // ITERATION 2
   //adding new product
-  // function addNewProduct(newProduct){
-  // let p = document.getElementById('product');
-  // let newProduct = p.cloneNode(true);
-  // let newName = newProduct.querySelector('name')
-  // newName.innerHTML="Ironhack Beach Towel";
-  // let newPrice = newProduct.querySelector('price');
-  // newPrice.innerHTML =12.5;
-  // }
   const allProduct = document.querySelectorAll('.product');
   allProduct.forEach(function(product){
     updateSubtotal(product);
@@ -48,14 +40,45 @@ function calculateAll() {
 function removeProduct(event) {
   const target = event.currentTarget;
   console.log('The target in remove is:', target);
-  //... your code goes here
+  const lineToRemove = target.parentElement.parentElement;//select parent of parent of selected button
+  lineToRemove.remove(1);//remove 1 line
+  calculateAll(); 
 }
+const removeBtns = document.querySelectorAll(".btn-remove");//return an array of buttons
+  function bindDeletebuttons(btn){
+    return btn.addEventListener('click',removeProduct)//onclick sur les btns remove
+  }
+  removeBtns.forEach(bindDeletebuttons);//appliquer sur tous les btns remove
+
 
 // ITERATION 5
-
+const createBtn=document.querySelector('#create');//je choisis la nouvelle ligne de produit a ajouter
+const newName = document.querySelector('.create-product input[type="text"]')//je choisis le champs nom de produit 
+const pu = document.querySelector('.create-product input[type="number"]')//je choisis le champs de prix
 function createProduct() {
-  //... your code goes here
+  let tr = document.createElement('tr');//creer la ligne de produit ('tr')
+  tr.className="product";//avec le class='produit'
+  //.innerHTML permet d'ajouter une partie d'HTML, on prend la valeur input de nom et prix, avec les memes class, cela donne les meme mis en forme que les lignes haut dessus
+  tr.innerHTML=`
+  <tr class="product">
+      <td class="name">
+        <span>${newName.value}</span> 
+      </td>
+      <td class="price">$<span>${pu.value}</span></td>
+      <td class="quantity">
+        <input type="number" value="0" min="0" placeholder="Quantity" />
+      </td>
+      <td class="subtotal">$<span>0</span></td>
+      <td class="action">
+        <button class="btn btn-remove">Remove</button>
+      </td>
+    </tr>`
+  let rows= document.getElementById('rows');//parent des elements tr (qui sont les lignes de produits dans le tableau)
+  rows.appendChild(tr);
+  bindDeletebuttons(tr.querySelector(".btn-remove"));//applique le bouton remove
+  calculateAll(); //recalculer les subtotaux
 }
+createBtn.addEventListener('click',createProduct);
 
 window.addEventListener('load', () => {
   const calculatePricesBtn = document.getElementById('calculate');
